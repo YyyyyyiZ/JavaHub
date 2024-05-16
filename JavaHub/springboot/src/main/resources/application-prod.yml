@@ -1,0 +1,22 @@
+server:
+  port: 9090
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/javahub?&useSSL=false&serverTimezone=UTC
+    username: javahub
+    password: jGCn6GCW2nEWisTT
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+files:
+  upload:
+    path: /www/wwwroot/dist/userImg/
+
+spring.thymeleaf.check-template: false
+spring.thymeleaf.check-template-location: false

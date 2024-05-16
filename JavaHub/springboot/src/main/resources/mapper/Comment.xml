@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.JavaHub.mapper.CommentMapper">
+    <select id="selectComment" resultType="com.JavaHub.entity.dto.CommentDTO">
+        SELECT comment,comment.userid,username FROM comment,user WHERE comment.userid=user.userid AND commentid IN
+        <foreach collection="idList" item="item" index="index"
+                 open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </select>
+
+    <insert id="newComment" parameterType="com.JavaHub.entity.Comment">
+        insert into comment(userid,comment) values (#{userid},#{comment})
+        <selectKey keyProperty="commentid" resultType="int" order="AFTER">
+            select LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+</mapper>
